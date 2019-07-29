@@ -1,0 +1,38 @@
+<h1 style="text-align: center; color: rgb(90,116,160);">All My Posts</h1>
+  <p>
+    <button class="btn btn-info ml-2 mr-2" routerLink="/UserHome" (click) = "goHome()">Home</button>
+  </p>
+<div class="container-fluid">
+    <div>
+      <form class="form-horizontal">
+         <input type = "hidden" [(ngModel)] = "post.id" name = "id" /> 
+            <div class="form-group">
+                <label class="control-label col-sm-3"  style="font-size: 20px; color: black;">Enter Post Description</label>
+                <div class="col-sm-12">
+                      <input type = "text" [(ngModel)] = "post.text" name = "price" class="form-control" style="width: 100%; height: 100%;" maxlength="2000"/>
+                </div>    
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button (click) = "addPost()" routerLink="/Success" class = "btn btn-info" style="font-size: 20px;">Add Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<table class="table table-striped table-bordered">
+  <tr style="background:rgb(90,116,160); color:white;">
+    <th>TEXT</th>
+    <th>LIKES</th>
+    <th>DELETE</th>
+  </tr>
+  <tr *ngFor = "let post of posts">
+    <td>{{post.text}}</td>
+    <td>{{post.likecount}}</td>
+      <td>
+        <button (click) = "deletePost(post.post_id)" class="btn btn-warning"> Delete </button></td>
+  </tr>
+  <tr *ngIf = "posts && posts.length == 0">
+    <td colspan="3">no records found</td>
+  </tr>
+</table>
+</div>
